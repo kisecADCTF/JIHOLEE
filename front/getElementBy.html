@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Javascript - getElementBy</title>
+</head>
+<body>
+    <p>TagName</p>
+    <div id="div2">id</div>
+    <span class="span2">class</span>
+    <script>
+        var a = document.getElementsByTagName("p")[0].innerHTML;
+        var b = document.getElementById("div2").innerHTML;
+        var c = document.getElementsByClassName("span2")[0].innerHTML;
+        alert("p = "+a+" div = "+b+" span = "+c);
+    </script>
+</body>
+</html>

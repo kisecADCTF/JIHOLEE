@@ -1,0 +1,26 @@
+<html>
+<head>
+    <title>Init Database Page</title>
+</head>
+
+<body>
+<form id="dbForm" action="init.php" method="get">
+    <p>Select What you want</p>
+
+    <div>
+        <input type="checkbox" id="confirm" name="confirm" value="true">
+        <label for="confirm">Create Database</label>
+    </div>
+
+    <div>
+        <input type="checkbox" id="drop" name="drop" value="true">
+        <label for="drop">Drop Database before create</label>
+    </div>
+    <input type="submit" name="submit" value="submit" />
+</form>
+</body>
+</html>
+<script>
+    //if (confirm("Do you really want to reset the database?"))
+    //	window.location.href = "init.php?confirm=true";
+</script>

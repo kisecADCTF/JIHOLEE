@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>구구단을 외자</title>
+</head>
+<body>
+    <script>
+            var number = prompt("몇 단??");	//수르 입력받습니다.
+            calc(number);	// 입력받은 수를 calc 함수에 전달
+
+            function calc(i){		//calc 함수는 구구단 생성
+            document.write("<h1>"+i+"단"+"</h1>");	//표의 첫 칸 작성
+            for(var n=1; n<10; n++){
+                document.write(""+i+"X"+n+"="+i*n+"<br />");		//구구단 표에 입력
+            }
+            document.write("</tr></table>");
+        }
+    </script>
+</body>
+</html>

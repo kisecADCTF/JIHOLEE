@@ -1,0 +1,156 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>사칙 계산기</title>
+</head>
+<style>
+    /* 배경 */
+    body { background-color : #BDBDBD; }
+
+    /* 버튼 */
+    input[type="button"] {
+        width : 96px;
+        height : 96px;
+        font-size : 18px;
+    }
+
+    /* 테이블 */
+    table, td, tr {
+        text-align : center;
+        background-color : #BDBDBD;
+        border-spacing : 0px;
+    }
+
+    /* 셀 */
+    td.cell {
+        width : 98px;
+        height : 98px;
+        padding : 2px;
+    }
+
+    /* 입력칸 */
+    #input_text {
+        width : 396px;
+        height : 140px;
+        text-align : right;
+        font-size : 24px;
+        border : none;
+        margin : 1px;
+        background-color :
+    }
+
+    /* 입력칸 선택시 외곽선 */
+    input:focus {outline:none;}
+
+    /* 0버튼 */
+    #zero {
+        width : 197px;
+        height : 95px;
+        font-size : 18px;
+    }
+
+    /* 숫자 버튼 */
+    #one, #two, #three, #four, #five, #six, #seven, #eight, #nine, #zero {
+        background-color : #ffffff;
+        border : none;
+    }
+
+    /* 기호 + 기타 버튼 */
+    #plus, #division, #minus, #time, #dot, #equal, #C, #bs, #pm {
+        background-color : #E6E6E6;
+        border : none;
+    }
+</style>
+<script>
+    //텍스트 지우기
+    function clearText() {
+        document.getElementById("input_text").value = "";
+    }
+    //한글자 지우기
+    function backspace() {
+        var text = document.getElementById("input_text").value;
+        document.getElementById("input_text").value = text.substr(0,text.length-1);
+    }
+    //텍스트 입력
+    function getText(n) {
+        var text = document.getElementById("input_text").value;
+        var len = text.length-1;
+        //소수점만 입력됐을 때 0입력
+        if (n == '.') {
+            if (isNaN(text.charAt(len))==NaN || text.charAt(len)==' ') {
+                document.getElementById("input_text").value = text + "0.";
+            }
+            else if (text.charAt(len)=='.') {
+            }
+            else {
+                document.getElementById("input_text").value = text + n;
+            }
+        }
+        else {
+            document.getElementById("input_text").value = text + n;
+        }
+
+    }
+    //부호 변환
+    function getSign(){
+        var text = document.getElementById("input_text").value;
+        var len = text.length-1;
+
+        while (text.charAt(len) != " "){
+            if (text.charAt(len)==""){
+                document.getElementById("input_text").value = "(-"+text+")";
+                return;
+            }
+            len--;
+        }
+        var t = text.substring(len+1,text.length-1);
+        document.getElementById("input_text").value = text.charAt(len)+"(- "+t+")";
+    }
+
+    //클릭해서 숫자 받기
+    function getResult() {
+        var text = document.getElementById("input_text").value;
+        var result = eval(text);
+        document.getElementById("input_text").value = result;
+    }
+</script>
+
+<body>
+<center>
+    <table width='400px'>
+        <tr>
+            <td colspan="4" height="50px"><input id="input_text" type="text"></td>
+        </tr>
+        <tr>
+            <td class="cell"><input type="button" id="C" value="C" onclick="clearText()"></td>
+            <td class="cell"><input type="button" id="bs" value="←" onclick="backspace()"></td>
+            <td class="cell"><input type="button" id="pm" value="+/-" onclick="getSign()"></td>
+            <td class="cell"><input type="button" id="division" value=" / " onclick="getText(division.value)"></td>
+        </tr>
+        <tr>
+            <td class="cell"><input type="button" id="seven" value="7" onclick="getText(seven.value)"></td>
+            <td class="cell"><input type="button" id="eight" value="8" onclick="getText(eight.value)"></td>
+            <td class="cell"><input type="button" id="nine" value="9" onclick="getText(nine.value)"></td>
+            <td class="cell"><input type="button" id="time" value=" * " onclick="getText(time.value)"></td>
+        </tr>
+        <tr>
+            <td class="cell"><input type="button" id="four" value="4" onclick="getText(four.value)"></td>
+            <td class="cell"><input type="button" id="five" value="5" onclick="getText(five.value)"></td>
+            <td class="cell"><input type="button" id="six" value="6" onclick="getText(six.value)"></td>
+            <td class="cell"><input type="button" id="minus" value=" - " onclick="getText(minus.value)"></td>
+        </tr>
+        <tr>
+            <td class="cell"><input type="button" id="one" value="1" onclick="getText(one.value)"></td>
+            <td class="cell"><input type="button" id="two" value="2" onclick="getText(two.value)"></td>
+            <td class="cell"><input type="button" id="three" value="3" onclick="getText(three.value)"></td>
+            <td class="cell"><input type="button" id="plus" value=" + " onclick="getText(plus.value)"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="button" id="zero" onclick="getText(zero.value)" value="0"></td>
+            <td class="cell"><input type="button" id="dot" value="." onclick="getText(dot.value)"></td>
+            <td class="cell"><input type="button" id="equal" onclick="getResult()" value="="></td>
+        </tr>
+    </table>
+</center>
+</body>
+</html>
